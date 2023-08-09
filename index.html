@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="DateExtensionHtml.js"></script>
+</head>
+
+<body>
+    <input type="date" name="current_date" id="current_date">
+    <input type="date" name="future_date" id="future_date" readonly><br><br>
+    <p id="message"></p>
+</body>
+<script>
+    const msg = document.getElementById("message")
+    const currentDate = document.getElementById("current_date")
+    const futureDate = document.getElementById("future_date")
+
+    currentDate.addEventListener("change", () => {
+        let newDate = new Date(currentDate.value)
+        futureDate.value = newDate.addDate(10)
+        msg.innerHTML = futureDate.value
+    })
+</script>
+
+</html>
