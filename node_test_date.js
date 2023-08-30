@@ -1,4 +1,4 @@
-require("./DateExtension.js");
+const dateExtension = require("./DateExtension.js");
 
 let currentDate = new Date();
 
