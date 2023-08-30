@@ -2,7 +2,6 @@
 
 - ## Installation
     1. Import the corresponding file into your webpage or application.
-        1. If you're importing it for use with Node.js, you need to execute the exported function as shown in the example.
 - ## Usage
     1. The new methods are added to the Date prototype. Ensure that you don't have any conflicting functions.
     2. Methods like `addDate` or `addHour` will modify your current object.

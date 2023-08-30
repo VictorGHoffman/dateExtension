@@ -1,5 +1,5 @@
-const dateExtension = require('./DateExtension.js')
-dateExtension()
+require("./DateExtension.js");
 
-currentDate = new Date()
-console.log(currentDate.getCurrentDate());
+let currentDate = new Date();
+
+console.log(currentDate.getCurrentHour());
