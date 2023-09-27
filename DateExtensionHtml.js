@@ -8,28 +8,49 @@ Date.prototype.getCurrentHour = function () {
   return hour.toJSON().substring(11, 19);
 };
 
-Date.prototype.addDate = function (addedTime, unit = "day") {
+Date.prototype.format = function (format) {
   let date = new Date(this);
-  switch (unit) {
-    case "month":
-      return new Date(date.setMonth(date.getMonth() + addedTime));
-    case "year":
-      return new Date(date.setYear(date.getFullYear() + addedTime));
-    default:
-      return new Date(date.setDate(date.getDate() + addedTime));
-  }
+  let year = date.getFullYear();
+  let month = date.getMonth() + 1;
+  let day = date.getDate();
+  let hour = date.getHours();
+  let minute = date.getMinutes();
+  let second = date.getSeconds();
+
+  return format
+    .replace("yyyy", year)
+    .replace("MM", month.toString().padStart(2, "0"))
+    .replace("dd", day.toString().padStart(2, "0"))
+    .replace("HH", hour.toString().padStart(2, "0"))
+    .replace("mm", minute.toString().padStart(2, "0"))
+    .replace("ss", second.toString().padStart(2, "0"));
 };
 
-Date.prototype.addTime = function (addedTime, unit = "hour") {
+Date.prototype.addTime = function (unit) {
   let date = new Date(this);
-  switch (unit) {
-    case "minute":
-      return new Date(date.setMinutes(date.getMinutes() + addedTime));
-    case "second":
-      return new Date(date.setSeconds(date.getSeconds() + addedTime));
-    default:
-      return new Date(date.setHours(date.getHours() + addedTime));
+  for (let key in unit) {
+    switch (key) {
+      case "year":
+        date.setFullYear(date.getFullYear() + unit[key]);
+        break;
+      case "month":
+        date.setMonth(date.getMonth() + unit[key]);
+        break;
+      case "day":
+        date.setDate(date.getDate() + unit[key]);
+        break;
+      case "hour":
+        date.setHours(date.getHours() + unit[key]);
+        break;
+      case "minute":
+        date.setMinutes(date.getMinutes() + unit[key]);
+        break;
+      case "second":
+        date.setSeconds(date.getSeconds() + unit[key]);
+        break;
+    }
   }
+  return date;
 };
 
 Date.prototype.compareDate = function (secondDate) {

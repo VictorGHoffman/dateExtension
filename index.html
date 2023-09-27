@@ -9,7 +9,7 @@
     <script src="DateExtensionHtml.js"></script>
 </head>
 
-<body>
+<body class="sunrise">
     <input type="date" name="current_date" id="current_date">
     <input type="date" name="future_date" id="future_date" readonly><br><br>
     <p id="message"></p>
@@ -21,7 +21,8 @@
 
     currentDate.addEventListener("change", () => {
         let newDate = new Date(currentDate.value)
-        futureDate.value = newDate.addDate(10)
+        futureDate.value = newDate.addTime({ day: 10 }).format("yyyy-MM-dd")
+        console.log(newDate.getCurrentHour());
         msg.innerHTML = futureDate.value
     })
 </script>
